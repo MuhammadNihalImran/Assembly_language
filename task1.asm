@@ -6,16 +6,18 @@
 .CODE
 MAIN PROC
 
+    ; Initialize Data Segment
     MOV AX, @DATA
     MOV DS, AX
 
-    MOV AH, 02H
-    MOV DL, 'A'
-    INT 21H
+    ; Print a single character
+    MOV AH, 02H        ; DOS function 02H: Print character
+    MOV DL, 'A'        ; Store character 'A' in DL
+    INT 21H            ; Call DOS interrupt to print the character
 
-    MOV AH, 4CH
-    INT 21H
-
+    ; Exit the program
+    MOV AH, 4CH        ; DOS function 4CH: Terminate program
+    INT 21H            ; Return control to DOS
 
 MAIN ENDP
 END MAIN
