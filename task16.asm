@@ -15,15 +15,7 @@ MAIN PROC
     ; ASCII ko number mein convert karo
     SUB AL, '0'
 
-    ; Pehle digit ko BL mein save karo
-    MOV BL, AL
-
-    ; BL × 10 karo
-    MOV AL, BL
-    MOV BL, 10
-    MUL BL
-
-    ; Result ko BX mein save karo
+    ; Pehla digit BL mein save karo
     MOV BL, AL
 
     ; Dusra digit input lo
@@ -33,11 +25,20 @@ MAIN PROC
     ; ASCII ko number mein convert karo
     SUB AL, '0'
 
-    ; Pehle digit × 10 + second digit
-    ADD AL, BL
+    ; Dusra digit BH mein save karo
+    MOV BH, AL
 
-    ; Number ko BX mein save karo
-    MOV BL, AL
+    ; Pehla digit print karo
+    ADD BL, '0'
+    MOV DL, BL
+    MOV AH, 02H
+    INT 21H
+
+    ; Dusra digit print karo
+    ADD BH, '0'
+    MOV DL, BH
+    MOV AH, 02H
+    INT 21H
 
     ; Program exit karo
     MOV AH, 4CH
